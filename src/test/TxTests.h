@@ -108,6 +108,7 @@ transactionFromOperations(Application& app, SecretKey const& from,
                           std::vector<Operation> const& ops);
 
 Operation changeTrust(Asset const& asset, int64_t limit);
+Operation changeTrust(Asset const& asset, int64_t limit, AccountID account);
 
 Operation allowTrust(PublicKey const& trustor, Asset const& asset,
                      bool authorize);
