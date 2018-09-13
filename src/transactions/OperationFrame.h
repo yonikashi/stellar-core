@@ -33,13 +33,17 @@ enum class ThresholdLevel
 
 class OperationFrame
 {
+  private:
+    mutable Hash mContentsHash; // the hash of the contents
+
   protected:
     Operation const& mOperation;
     TransactionFrame& mParentTx;
     AccountFrame::pointer mSourceAccount;
     OperationResult& mResult;
 
-    bool checkSignature(SignatureChecker& signatureChecker) const;
+    bool checkSignature(SignatureChecker& signatureChecker,
+                        Hash const& opHash) const;
 
     virtual bool doCheckValid(Application& app) = 0;
     virtual bool doApply(Application& app, LedgerDelta& delta,
@@ -61,6 +65,8 @@ class OperationFrame
         assert(mSourceAccount);
         return *mSourceAccount;
     }
+    
+    Hash const& getContentsHash();
 
     // overrides internal sourceAccount used by this operation
     // normally set automatically by checkValid

@@ -4,9 +4,11 @@
 
 #include "util/asio.h"
 #include "OperationFrame.h"
+#include "crypto/SHA.h"
 #include "database/Database.h"
 #include "ledger/LedgerDelta.h"
 #include "main/Application.h"
+#include "transactions/SignatureChecker.h"
 #include "transactions/AllowTrustOpFrame.h"
 #include "transactions/ChangeTrustOpFrame.h"
 #include "transactions/CreateAccountOpFrame.h"
@@ -93,6 +95,18 @@ OperationFrame::OperationFrame(Operation const& op, OperationResult& res,
 {
 }
 
+Hash const&
+OperationFrame::getContentsHash()
+{
+    if (isZero(mContentsHash))
+    {
+        mContentsHash = sha256(xdr::xdr_to_opaque(mParentTx.getNetworkId(),
+                                                  mOperation));
+    }
+
+    return mContentsHash;
+}
+
 bool
 OperationFrame::apply(SignatureChecker& signatureChecker, LedgerDelta& delta,
                       Application& app)
@@ -114,12 +128,12 @@ OperationFrame::getThresholdLevel() const
 }
 
 bool
-OperationFrame::checkSignature(SignatureChecker& signatureChecker) const
+OperationFrame::checkSignature(SignatureChecker& signatureChecker, Hash const& opHash) const
 {
     auto neededThreshold =
         getNeededThreshold(*mSourceAccount, getThresholdLevel());
     return mParentTx.checkSignature(signatureChecker, *mSourceAccount,
-                                    neededThreshold);
+                                    neededThreshold, opHash);
 }
 
 AccountID const&
@@ -189,7 +203,8 @@ OperationFrame::checkValid(SignatureChecker& signatureChecker, Application& app,
         }
     }
 
-    if (!checkSignature(signatureChecker) && !shouldSkipSigCheck)
+    if (!checkSignature(signatureChecker, getContentsHash()) &&
+        !shouldSkipSigCheck)
     {
         app.getMetrics()
             .NewMeter({"operation", "invalid", "bad-auth"}, "operation")

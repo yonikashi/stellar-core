@@ -29,7 +29,7 @@ class SignatureChecker
 
     bool checkSignature(AccountID const& accountID,
                         std::vector<Signer> const& signersV,
-                        int32_t neededWeight);
+                        int32_t neededWeight, Hash const& opHash = Hash());
     bool checkAllSignaturesUsed() const;
 
     const UsedOneTimeSignerKeys& usedOneTimeSignerKeys() const;

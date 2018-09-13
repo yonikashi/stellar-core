@@ -33,7 +33,7 @@ SignatureChecker::SignatureChecker(
 bool
 SignatureChecker::checkSignature(AccountID const& accountID,
                                  std::vector<Signer> const& signersV,
-                                 int neededWeight)
+                                 int neededWeight, Hash const& opHash)
 {
     if (mProtocolVersion == 7)
     {
@@ -110,7 +110,8 @@ SignatureChecker::checkSignature(AccountID const& accountID,
     verified = verifyAll(
         signers[SIGNER_KEY_TYPE_ED25519],
         [&](DecoratedSignature const& sig, Signer const& signerKey) {
-            return SignatureUtils::verify(sig, signerKey.key, mContentsHash);
+            return SignatureUtils::verify(sig, signerKey.key, mContentsHash) || 
+                   SignatureUtils::verify(sig, signerKey.key, opHash);
         });
     if (verified)
     {

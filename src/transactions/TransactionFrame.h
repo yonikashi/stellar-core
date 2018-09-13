@@ -106,6 +106,12 @@ class TransactionFrame
         return mResult;
     }
 
+    Hash const&
+    getNetworkId()
+    {
+        return mNetworkID;
+    }
+
     TransactionResultCode
     getResultCode() const
     {
@@ -145,7 +151,8 @@ class TransactionFrame
     void addSignature(DecoratedSignature const& signature);
 
     bool checkSignature(SignatureChecker& signatureChecker,
-                        AccountFrame& account, int32_t neededWeight);
+                        AccountFrame& account, int32_t neededWeight,
+                        Hash const& opHash = Hash());
 
     bool checkValid(Application& app, SequenceNumber current);
 
