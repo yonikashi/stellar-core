@@ -153,7 +153,7 @@ struct SurgeSorter
 };
 
 void
-TxSetFrame::surgePricingFilter(LedgerManager const& lm)
+TxSetFrame::surgePricingFilter(LedgerManager const& lm, Application& app)
 {
     size_t max = lm.getMaxTxSetSize();
     if (mTransactions.size() > max)
