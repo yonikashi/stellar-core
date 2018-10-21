@@ -208,10 +208,29 @@ OperationFrame::checkValid(SignatureChecker& signatureChecker, Application& app,
         return false;
     }
 
+    bool shouldSkipSigCheck = false;
+
+    if (mOperation.body.type() == CHANGE_TRUST)
+    {
+        for (auto const& opFrame : mParentTx.getOperations())
+        {
+            auto const& body = opFrame->getOperation().body;
+
+            if (body.type() == CREATE_ACCOUNT &&
+                body.createAccountOp().destination == *mOperation.sourceAccount)
+            {
+                shouldSkipSigCheck = true;
+
+                break;
+            }
+        }
+    }
+
     bool forApply = (delta != nullptr);
     if (!forApply || app.getLedgerManager().getCurrentLedgerVersion() < 10)
     {
-        if (!checkSignature(signatureChecker, app, delta))
+        if (!checkSignature(signatureChecker, app, delta) &&
+            !shouldSkipSigCheck)
         {
             return false;
         }
