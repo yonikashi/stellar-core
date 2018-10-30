@@ -99,7 +99,7 @@ CreateAccountOpFrame::doApply(Application& app, LedgerDelta& delta,
 bool
 CreateAccountOpFrame::doCheckValid(Application& app)
 {
-    if (mCreateAccount.startingBalance <= 0)
+    if (mCreateAccount.startingBalance < 0)
     {
         app.getMetrics()
             .NewMeter(
