@@ -103,12 +103,6 @@ TestAccount::merge(PublicKey const& into)
     REQUIRE(!loadAccount(getPublicKey(), mApp, false));
 }
 
-void
-TestAccount::inflation()
-{
-    applyTx(tx({txtest::inflation()}), mApp);
-}
-
 Asset
 TestAccount::asset(std::string const& name)
 {

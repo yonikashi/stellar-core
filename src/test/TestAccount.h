@@ -38,7 +38,6 @@ class TestAccount
     TestAccount create(SecretKey const& secretKey, uint64_t initialBalance);
     TestAccount create(std::string const& name, uint64_t initialBalance);
     void merge(PublicKey const& into);
-    void inflation();
 
     Asset asset(std::string const& name);
     void changeTrust(Asset const& asset, int64_t limit);

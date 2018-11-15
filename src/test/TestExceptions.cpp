@@ -308,9 +308,6 @@ throwIf(TransactionResult const& result)
     case ACCOUNT_MERGE:
         throwIf(opResult.tr().accountMergeResult());
         break;
-    case INFLATION:
-        throwIf(opResult.tr().inflationResult());
-        break;
     case MANAGE_DATA:
         throwIf(opResult.tr().manageDataResult());
         break;

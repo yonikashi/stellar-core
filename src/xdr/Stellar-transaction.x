@@ -24,7 +24,6 @@ enum OperationType
     CHANGE_TRUST = 6,
     ALLOW_TRUST = 7,
     ACCOUNT_MERGE = 8,
-    INFLATION = 9,
     MANAGE_DATA = 10
 };
 
@@ -249,8 +248,6 @@ struct Operation
         AllowTrustOp allowTrustOp;
     case ACCOUNT_MERGE:
         AccountID destination;
-    case INFLATION:
-        void;
     case MANAGE_DATA:
         ManageDataOp manageDataOp;
     }
@@ -679,8 +676,6 @@ case opINNER:
         AllowTrustResult allowTrustResult;
     case ACCOUNT_MERGE:
         AccountMergeResult accountMergeResult;
-    case INFLATION:
-        InflationResult inflationResult;
     case MANAGE_DATA:
         ManageDataResult manageDataResult;
     }

@@ -72,8 +72,6 @@ Operation changeTrust(Asset const& asset, int64_t limit, AccountID account);
 Operation allowTrust(PublicKey const& trustor, Asset const& asset,
                      bool authorize);
 
-Operation inflation();
-
 Operation accountMerge(PublicKey const& dest);
 
 Operation manageData(std::string const& name, DataValue* value);

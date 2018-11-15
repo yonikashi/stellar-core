@@ -18,7 +18,6 @@
 #include "transactions/AllowTrustOpFrame.h"
 #include "transactions/ChangeTrustOpFrame.h"
 #include "transactions/CreateAccountOpFrame.h"
-#include "transactions/InflationOpFrame.h"
 #include "transactions/ManageDataOpFrame.h"
 #include "transactions/ManageOfferOpFrame.h"
 #include "transactions/MergeOpFrame.h"
@@ -606,15 +605,6 @@ setOptions(AccountID* inflationDest, uint32_t* setFlags, uint32_t* clearFlags,
     {
         setOp.homeDomain.activate() = *homeDomain;
     }
-
-    return op;
-}
-
-Operation
-inflation()
-{
-    Operation op;
-    op.body.type(INFLATION);
 
     return op;
 }

@@ -258,9 +258,6 @@
     <ClCompile Include="..\..\src\transactions\TransactionFrame.cpp">
       <Filter>transactions</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\transactions\InflationOpFrame.cpp">
-      <Filter>transactions</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\transactions\MergeOpFrame.cpp">
       <Filter>transactions</Filter>
     </ClCompile>
@@ -295,9 +292,6 @@
       <Filter>transactions\tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\transactions\MergeTests.cpp">
-      <Filter>transactions\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\transactions\InflationTests.cpp">
       <Filter>transactions\tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\transactions\SetOptionsTests.cpp">
@@ -801,9 +795,6 @@
     <ClCompile Include="..\..\src\invariant\CacheIsConsistentWithDatabase.cpp">
       <Filter>invariant</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\invariant\ConservationOfLumens.cpp">
-      <Filter>invariant</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\invariant\InvariantDoesNotHold.cpp">
       <Filter>invariant</Filter>
     </ClCompile>
@@ -829,9 +820,6 @@
       <Filter>invariant\tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\invariant\CacheIsConsistentWithDatabaseTests.cpp">
-      <Filter>invariant\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\invariant\ConservationOfLumensTests.cpp">
       <Filter>invariant\tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\invariant\MinimumAccountBalanceTests.cpp">
@@ -969,9 +957,6 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\transactions\TransactionFrame.h">
-      <Filter>transactions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\transactions\InflationOpFrame.h">
       <Filter>transactions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\transactions\MergeOpFrame.h">
@@ -1440,9 +1425,6 @@
       <Filter>invariant</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\invariant\CacheIsConsistentWithDatabase.h">
-      <Filter>invariant</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\invariant\ConservationOfLumens.h">
       <Filter>invariant</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\invariant\Invariant.h">

@@ -11,7 +11,6 @@
 #include "transactions/ChangeTrustOpFrame.h"
 #include "transactions/CreateAccountOpFrame.h"
 #include "transactions/CreatePassiveOfferOpFrame.h"
-#include "transactions/InflationOpFrame.h"
 #include "transactions/ManageDataOpFrame.h"
 #include "transactions/ManageOfferOpFrame.h"
 #include "transactions/MergeOpFrame.h"
@@ -75,8 +74,6 @@ OperationFrame::makeHelper(Operation const& op, OperationResult& res,
         return std::make_shared<AllowTrustOpFrame>(op, res, tx);
     case ACCOUNT_MERGE:
         return std::make_shared<MergeOpFrame>(op, res, tx);
-    case INFLATION:
-        return std::make_shared<InflationOpFrame>(op, res, tx);
     case MANAGE_DATA:
         return std::make_shared<ManageDataOpFrame>(op, res, tx);
 

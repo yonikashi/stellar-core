@@ -312,10 +312,6 @@
 		82001EA021A0A4E30079CDCA /* standard-into-type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82000B85219E7FAA0079CDCA /* standard-into-type.cpp */; };
 		8200237021A120140079CDCA /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8200236F21A11FE60079CDCA /* libsodium.a */; };
 		8236654521A153B2007B6DFE /* libpq.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8236654421A153B2007B6DFE /* libpq.tbd */; };
-		82DC9B0C21A2701D0082860C /* ConservationOfLumens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82DC9B0921A2701D0082860C /* ConservationOfLumens.cpp */; };
-		82DC9B0D21A2701D0082860C /* ConservationOfLumensTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82DC9B0B21A2701D0082860C /* ConservationOfLumensTests.cpp */; };
-		82DC9B1021A270490082860C /* InflationOpFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82DC9B0E21A270490082860C /* InflationOpFrame.cpp */; };
-		82DC9B1121A270490082860C /* InflationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82DC9B0F21A270490082860C /* InflationTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1634,10 +1630,6 @@
 		82001D5221A087630079CDCA /* libutil.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libutil.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8200236A21A11FE60079CDCA /* sodium.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = sodium.xcodeproj; sourceTree = "<group>"; };
 		8236654421A153B2007B6DFE /* libpq.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpq.tbd; path = usr/lib/libpq.tbd; sourceTree = SDKROOT; };
-		82DC9B0921A2701D0082860C /* ConservationOfLumens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConservationOfLumens.cpp; sourceTree = "<group>"; };
-		82DC9B0B21A2701D0082860C /* ConservationOfLumensTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConservationOfLumensTests.cpp; sourceTree = "<group>"; };
-		82DC9B0E21A270490082860C /* InflationOpFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InflationOpFrame.cpp; sourceTree = "<group>"; };
-		82DC9B0F21A270490082860C /* InflationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InflationTests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1817,8 +1809,6 @@
 		820005E0219E7EBC0079CDCA /* invariant */ = {
 			isa = PBXGroup;
 			children = (
-				82DC9B0921A2701D0082860C /* ConservationOfLumens.cpp */,
-				82DC9B0B21A2701D0082860C /* ConservationOfLumensTests.cpp */,
 				820005E1219E7EBC0079CDCA /* InvariantTestUtils.cpp */,
 				820005E3219E7EBC0079CDCA /* MinimumAccountBalance.h */,
 				820005E5219E7EBC0079CDCA /* InvariantDoesNotHold.h */,
@@ -1985,8 +1975,6 @@
 		82000700219E7EBC0079CDCA /* transactions */ = {
 			isa = PBXGroup;
 			children = (
-				82DC9B0E21A270490082860C /* InflationOpFrame.cpp */,
-				82DC9B0F21A270490082860C /* InflationTests.cpp */,
 				82000701219E7EBC0079CDCA /* CreatePassiveOfferOpFrame.cpp */,
 				82000702219E7EBC0079CDCA /* PaymentOpFrame.cpp */,
 				82000703219E7EBC0079CDCA /* ChangeTrustOpFrame.cpp */,
@@ -3983,7 +3971,6 @@
 				82000999219E7EBD0079CDCA /* TmpDir.cpp in Sources */,
 				820009B9219E7EBD0079CDCA /* SecretValue.cpp in Sources */,
 				82000A5E219E7EBE0079CDCA /* InferredQuorum.cpp in Sources */,
-				82DC9B0D21A2701D0082860C /* ConservationOfLumensTests.cpp in Sources */,
 				82000ACB219E7EBE0079CDCA /* OverlayManagerTests.cpp in Sources */,
 				82000932219E7EBD0079CDCA /* Database.cpp in Sources */,
 				82000A31219E7EBE0079CDCA /* HerderImpl.cpp in Sources */,
@@ -4017,7 +4004,6 @@
 				82001CAC219E7FB10079CDCA /* timer_context.cc in Sources */,
 				82001CEE219E7FB10079CDCA /* base.cpp in Sources */,
 				82000A9C219E7EBE0079CDCA /* ExternalQueue.cpp in Sources */,
-				82DC9B0C21A2701D0082860C /* ConservationOfLumens.cpp in Sources */,
 				82000958219E7EBD0079CDCA /* LedgerEntryTests.cpp in Sources */,
 				82001A4E219E7FAF0079CDCA /* HttpClient.cpp in Sources */,
 				820009A6219E7EBD0079CDCA /* StatusManagerTest.cpp in Sources */,
@@ -4071,7 +4057,6 @@
 				8200097F219E7EBD0079CDCA /* CacheIsConsistentWithDatabase.cpp in Sources */,
 				82000AD5219E7EBE0079CDCA /* VerifyLedgerChainWork.cpp in Sources */,
 				820009FC219E7EBD0079CDCA /* SetOptionsTests.cpp in Sources */,
-				82DC9B1121A270490082860C /* InflationTests.cpp in Sources */,
 				82000A90219E7EBE0079CDCA /* ApplicationTests.cpp in Sources */,
 				82001A83219E7FAF0079CDCA /* rpcbind.cc in Sources */,
 				82000AD8219E7EBE0079CDCA /* CatchupWorkTests.cpp in Sources */,
@@ -4123,7 +4108,6 @@
 				82000A50219E7EBE0079CDCA /* PublishQueueBuckets.cpp in Sources */,
 				82000940219E7EBD0079CDCA /* KeyUtils.cpp in Sources */,
 				8200098D219E7EBD0079CDCA /* test.cpp in Sources */,
-				82DC9B1021A270490082860C /* InflationOpFrame.cpp in Sources */,
 				82000ABB219E7EBE0079CDCA /* ItemFetcherTests.cpp in Sources */,
 				82000A82219E7EBE0079CDCA /* LruCacheTests.cpp in Sources */,
 				82001CBD219E7FB10079CDCA /* ewma.cc in Sources */,
