@@ -82,3 +82,6 @@
 *.vcxproj.user
 **/.vs/*
 
+# macos
+.DS_Store
+xcuserdata/
