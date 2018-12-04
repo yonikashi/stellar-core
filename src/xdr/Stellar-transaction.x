@@ -341,6 +341,27 @@ struct TransactionEnvelope
     signatures<20>;
 };
 
+struct OperationSignaturePayload {
+    Hash networkId;
+    SequenceNumber seqNum;
+    int32 slot;
+    union switch (EnvelopeType type)
+    {
+    case ENVELOPE_TYPE_OP:
+          Operation op;
+    /* All other values of type are invalid */
+    } taggedOperation;
+};
+
+/* An OperationEnvelope wraps an operation with a signature. */
+struct OperationEnvelope
+{
+    Operation op;
+    /* Each decorated signature is a signature over the SHA256 hash of
+     * an OperationSignaturePayload */
+    DecoratedSignature signature;
+};
+
 /* Operation Results section */
 
 /* This result is used when offers are taken during an operation */
