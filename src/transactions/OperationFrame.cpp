@@ -100,8 +100,15 @@ OperationFrame::getContentsHash()
 {
     if (isZero(mContentsHash))
     {
-        mContentsHash = sha256(xdr::xdr_to_opaque(mParentTx.getNetworkId(),
-                                                  mOperation));
+        auto payload = OperationSignaturePayload();
+        payload.networkId = mParentTx.getNetworkId();
+        payload.txSourceAccount = mParentTx.getSourceID();
+        payload.seqNum = mParentTx.getSeqNum();
+        payload.slot = mParentTx.indexOfOperation(this);
+        payload.taggedOperation.type(ENVELOPE_TYPE_OP);
+        payload.taggedOperation.op() = mOperation;
+
+        mContentsHash = sha256(xdr::xdr_to_opaque(payload));
     }
 
     return mContentsHash;

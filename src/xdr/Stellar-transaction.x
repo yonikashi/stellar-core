@@ -343,6 +343,7 @@ struct TransactionEnvelope
 
 struct OperationSignaturePayload {
     Hash networkId;
+    AccountID txSourceAccount;
     SequenceNumber seqNum;
     int32 slot;
     union switch (EnvelopeType type)

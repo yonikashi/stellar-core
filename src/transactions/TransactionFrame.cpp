@@ -81,11 +81,18 @@ TransactionFrame::clearCached()
 
 int32_t
 TransactionFrame::indexOfOperation(OperationFrame const* op) {
-    for (int i = 0; i < mOperations.size(); i++)
-        if (mOperations[i]->getOperation() == op->getOperation())
-            return i;
+    int index = -1;
 
-    return -1;
+    for (int i = 0; i < mOperations.size(); i++)
+    {
+        if (mOperations[i]->getSourceID() == op->getSourceID())
+            index++;
+
+        if (mOperations[i]->getOperation() == op->getOperation())
+            return index;
+    }
+
+    return index;
 }
 
 bool

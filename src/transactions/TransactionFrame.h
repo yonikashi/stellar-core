@@ -88,6 +88,8 @@ class TransactionFrame
 
     bool isWhitelisted(Application& app);
 
+    // Operations are grouped by source account, and the index returned is that of the operation's
+    // position within operations with the same source account.
     int32_t
     indexOfOperation(OperationFrame const* op);
 
