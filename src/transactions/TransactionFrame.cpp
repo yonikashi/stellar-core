@@ -79,6 +79,15 @@ TransactionFrame::clearCached()
     mFullHash = zero;
 }
 
+int32_t
+TransactionFrame::indexOfOperation(OperationFrame const* op) {
+    for (int i = 0; i < mOperations.size(); i++)
+        if (mOperations[i]->getOperation() == op->getOperation())
+            return i;
+
+    return -1;
+}
+
 bool
 TransactionFrame::isWhitelisted(Application& app)
 {

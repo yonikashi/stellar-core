@@ -88,6 +88,9 @@ class TransactionFrame
 
     bool isWhitelisted(Application& app);
 
+    int32_t
+    indexOfOperation(OperationFrame const* op);
+
     std::vector<std::shared_ptr<OperationFrame>> const&
     getOperations() const
     {
