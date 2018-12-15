@@ -45,6 +45,8 @@
 #include "util/StatusManager.h"
 #include "work/WorkManager.h"
 
+#include "main/Whitelist.h"
+
 #include "util/Logging.h"
 #include "util/TmpDir.h"
 
@@ -121,6 +123,8 @@ ApplicationImpl::initialize()
     mWorkManager = WorkManager::create(*this);
     mBanManager = BanManager::create(*this);
     mStatusManager = std::make_unique<StatusManager>();
+
+    mWhitelist = std::make_unique<Whitelist>(*this);
 
     BucketListIsConsistentWithDatabase::registerInvariant(*this);
     AccountSubEntriesCountIsValid::registerInvariant(*this);
@@ -738,6 +742,13 @@ StatusManager&
 ApplicationImpl::getStatusManager()
 {
     return *mStatusManager;
+}
+
+Whitelist&
+ApplicationImpl::getWhitelist()
+{
+    mWhitelist.get()->update();
+    return *mWhitelist;
 }
 
 asio::io_service&

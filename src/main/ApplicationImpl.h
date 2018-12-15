@@ -32,6 +32,8 @@ class Database;
 class LoadGenerator;
 class NtpSynchronizationChecker;
 
+class Whitelist;
+
 class ApplicationImpl : public Application
 {
   public:
@@ -70,6 +72,8 @@ class ApplicationImpl : public Application
     virtual WorkManager& getWorkManager() override;
     virtual BanManager& getBanManager() override;
     virtual StatusManager& getStatusManager() override;
+    
+    virtual Whitelist& getWhitelist() override;
 
     virtual asio::io_service& getWorkerIOService() override;
 
@@ -148,6 +152,8 @@ class ApplicationImpl : public Application
     std::unique_ptr<BanManager> mBanManager;
     std::shared_ptr<NtpSynchronizationChecker> mNtpSynchronizationChecker;
     std::unique_ptr<StatusManager> mStatusManager;
+
+    std::unique_ptr<Whitelist> mWhitelist;
 
     std::vector<std::thread> mWorkerThreads;
 
