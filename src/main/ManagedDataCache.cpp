@@ -1,5 +1,6 @@
-#include "main/Whitelist.h"
+#include "main/ManagedDataCache.h"
 #include "ledger/DataFrame.h"
+#include "ledger/LedgerManager.h"
 #include "transactions/SignatureUtils.h"
 #include "transactions/TransactionFrame.h"
 #include <stdint.h>
@@ -8,7 +9,7 @@
 namespace stellar
 {
 void
-ManagedObject::update(Application& app)
+ManagedDataCache::update(Application& app)
 {
     if (getAccount(app).size() == 0 || lcl >= app.getLedgerManager().getLedgerNum()){
         return;
@@ -16,7 +17,7 @@ ManagedObject::update(Application& app)
 
     auto id = getAccount(app);
     AccountID aid(KeyUtils::fromStrKey<PublicKey>(id));
-    auto dfs = DataFrame::loadAllData(app.getDatabase(), aid);
+    auto dfs = DataFrame::loadAccountData(app.getDatabase(), aid);
 
     // Handle dataframe objects
     fulfill(dfs);
