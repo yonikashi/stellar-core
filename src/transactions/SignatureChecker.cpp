@@ -8,6 +8,8 @@
 #include "crypto/SHA.h"
 #include "crypto/SecretKey.h"
 #include "crypto/SignerKey.h"
+#include "main/Application.h"
+#include "main/Whitelist.h"
 #include "transactions/SignatureUtils.h"
 #include "util/Algoritm.h"
 #include "util/XDROperators.h"
@@ -17,10 +19,11 @@ namespace stellar
 
 SignatureChecker::SignatureChecker(
     uint32_t protocolVersion, Hash const& contentsHash,
-    xdr::xvector<DecoratedSignature, 20> const& signatures)
+    xdr::xvector<DecoratedSignature, 20> const& signatures, Application& app)
     : mProtocolVersion{protocolVersion}
     , mContentsHash{contentsHash}
     , mSignatures{signatures}
+    , mApp{app}
 {
     mUsedSignatures.resize(mSignatures.size());
 }
@@ -34,6 +37,16 @@ SignatureChecker::checkSignature(AccountID const& accountID,
     {
         return true;
     }
+
+	// flag any signatures from the whitelist as used
+	auto wl = Whitelist(mApp);
+    for (size_t i = 0; i < mSignatures.size(); i++)
+    {
+        auto const& sig = mSignatures[i];
+
+        if (wl.isWhitelistSig(sig, mContentsHash))
+            mUsedSignatures[i] = true;
+	}
 
     auto signers =
         split(signersV, [](const Signer& s) { return s.key.type(); });
@@ -69,7 +82,7 @@ SignatureChecker::checkSignature(AccountID const& accountID,
         {
             auto const& sig = mSignatures[i];
 
-            for (auto it = signers.begin(); it != signers.end(); ++it)
+			for (auto it = signers.begin(); it != signers.end(); ++it)
             {
                 auto& signerKey = *it;
                 if (verify(sig, signerKey))
@@ -139,4 +152,4 @@ SignatureChecker::usedOneTimeSignerKeys() const
 {
     return mUsedOneTimeSignerKeys;
 }
-};
+}; // namespace stellar
