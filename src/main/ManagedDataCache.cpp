@@ -31,6 +31,8 @@ ManagedDataCache::update()
 
     // Handle dataframe objects
     fulfill(dfs);
+    
     needsUpdate = false;
+    updateCounter++;
 }
 }
