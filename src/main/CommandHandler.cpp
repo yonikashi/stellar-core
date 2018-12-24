@@ -867,6 +867,8 @@ CommandHandler::tx(std::string const& params, std::string& retStr)
                 output << " , \"error\": \"" << resultBase64 << "\"";
             }
             output << "}";
+
+            LOG(DEBUG) << "Returning status: " << TX_STATUS_STRING[status];
         }
     }
     else
