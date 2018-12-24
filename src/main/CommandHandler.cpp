@@ -839,12 +839,16 @@ CommandHandler::tx(std::string const& params, std::string& retStr)
                                                       envelope);
         if (transaction)
         {
-            LOG(DEBUG) << "Received tx: " << transaction->getContentsHash();
-
             // add it to our current set
             // and make sure it is valid
             Herder::TransactionSubmitStatus status =
                 mApp.getHerder().recvTransaction(transaction);
+
+            LOG(DEBUG)
+                << "Received tx: "
+                << transaction->getContentsHash()
+                << " returning status: "
+                << TX_STATUS_STRING[status];
 
             if (status == Herder::TX_STATUS_PENDING)
             {
@@ -865,10 +869,10 @@ CommandHandler::tx(std::string const& params, std::string& retStr)
                 resultBase64 = bn::encode_b64(resultBin);
 
                 output << " , \"error\": \"" << resultBase64 << "\"";
+
+                LOG(DEBUG) << "tx error: " << resultBase64;
             }
             output << "}";
-
-            LOG(DEBUG) << "Returning status: " << TX_STATUS_STRING[status];
         }
     }
     else
