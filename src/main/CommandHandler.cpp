@@ -839,6 +839,8 @@ CommandHandler::tx(std::string const& params, std::string& retStr)
                                                       envelope);
         if (transaction)
         {
+            LOG(DEBUG) << "Received tx: " << transaction->getContentsHash();
+
             // add it to our current set
             // and make sure it is valid
             Herder::TransactionSubmitStatus status =

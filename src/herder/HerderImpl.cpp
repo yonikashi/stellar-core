@@ -1094,6 +1094,12 @@ HerderImpl::updatePendingTransactions(
         }
     }
 
+    CLOG(DEBUG, "Herder") << "Remaining tx count after removing applied txs: " <<
+        countTxs(mPendingTransactions[0]) +
+        countTxs(mPendingTransactions[1]) +
+        countTxs(mPendingTransactions[2]) +
+        countTxs(mPendingTransactions[3]);
+
     mSCPMetrics.mHerderPendingTxs0.set_count(countTxs(mPendingTransactions[0]));
     mSCPMetrics.mHerderPendingTxs1.set_count(countTxs(mPendingTransactions[1]));
     mSCPMetrics.mHerderPendingTxs2.set_count(countTxs(mPendingTransactions[2]));
