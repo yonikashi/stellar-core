@@ -1,5 +1,5 @@
 language: cpp
-dist: xenial1
+dist: xenial
 sudo: true
 compiler:
 - clang
