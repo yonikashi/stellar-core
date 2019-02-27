@@ -7,6 +7,9 @@ compiler:
 env:
   global:
   - COMMIT=${TRAVIS_COMMIT::6}
+  - BUILD_TYPE="stellar-core"
+  - TAG="v.9.2.0"
+  - GIT_BRANCH=latest
   - secure: Bso7IkkYUwNzyxbpBxLzlETCB++k8rLUi0JMsM6jzRK0YqRSMw7eIfHfkuwOw1bZWGjqIFDWVQ9YSCTIXDjSAxu3l3kDSYgWGWgVhL6UVYSRFj1evC28POAqYzc9ge6G8PtPJUXfMWbEeGxTI/OUvCxpTULR2Ur6pzpTJTXOxG+XbYzUi+J1J4W9GZs9y5sWO5VH5ndn7h19+jaYp5+xgaO9cRemAKuS39Y6c6/I+ejofxc/W4bT4qIcPSWOIHzq3y1mjbd3KSgVsN2jj1j4K50nDxWfaZ4pu6FEZqna94wVecBaNEGC16gBu7d6Re2bRjDmYdEHHdI1kJOlV9y2t3D3v4i5DEstypAPzxjkz9avt6JbP4zsnNyQTcOuC6XcaykMmz7lsDCKiwNq3xthiMt54QR4Io5hyuEdmyzz6o9LOPbNe8wloO6H/Y0+rFQK7q6GNi0SNhjejpeRySogw65AEAF/lyRKyd/FnrawKyZCiywq1YrP9R01ArUNb9CA4P3QhU6LRO8j6oFMmMN5URSYk887FkMaY0zx4FYiioOZ1SPxeWZSX4ss+FkuvRB0WKCwbfUS8hr65qaG+dXTkq3whjRMxBH5q8o8q4DwgxKhDKWbk5IMpxMkF0boyf+yTmdFhO+MP+CBRjwur6JM9kZGzM+k3ZHYGWEn5OAYJTQ=
   - secure: BO/VHcNQ41fUuJ65YsODG5J3WemZ6gxY90F+HrcwWuqh7iSxSJ/BYsVHEwxLgafcBgajduoQRFSxi11APpCH6tm31ieT8FoEe+t8Eg1+jyJYdIpzMGIXxHQt6QUssTF1VZ+8JppvFFO4/dFxf263aHwkB3C5dY/9wW1B5rwP0ba8a9OuPYX8wOkA2EeU8GFoiyDmRrVn8xdMsfHUZ3vL4LGOVLwgnl8VoGY2O7Y5NXNKPJUMBprDeAKYRvX70z55Ow22z4KbhjlevQ1iZIzVJWfreByorUjAUjFZ1qRAq3bGFyKEraqxJDUIrp+ggpSFvIIQhuKEzSGYB5+j8/nachxUZ9rOuzOuftNZXQqE+SKRSzNmbHD03WiLvP80QdacipxrPC388hO1EHiSeXVnbz9dRFYXirD6JCrUJTEBluoTTk6ZLcjdd0kpmctlSO64tBmQnzFEYRwmudjX3y+xUzH55v6GwvrnqOrC9ac8bX8V4fb0T5hRJ3iN6K8Qpv7GK8rY1vkvsR3DO4syEbmQ3slpRziCp/lCO0QTk+DHjv0WfnS5+h2ocp/JXB3gr1440JDyI1BFwObaNL/wj5izhsFhfniOet49pl7UNizN8pyi7cZm0BCUQ7JgqYXHPcvljA7jOTMLpIQUJbrCQ+qigo7VS0obJAc4rgXCyLPsgE4=
 services:
@@ -41,7 +44,7 @@ before_install:
 - pip install --user pipenv
 - pipenv sync
 - if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master"
-  --version=$TAG ; fi
+  --version=$GIT_BRANCH ; fi
 
 after_success:
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
