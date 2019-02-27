@@ -38,7 +38,7 @@ addons:
     - libffi-dev
 before_install:
 - mkdir $COMMIT && cd $COMMIT
-- git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
+- git clone https://github.com/yonikashi/blocktest.git && cd blocktest
 - pip -V
 - pip install --user invoke
 - pip install --user pipenv
