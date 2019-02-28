@@ -1,4 +1,5 @@
 language: cpp
+os: linux
 dist: xenial
 sudo: true
 compiler:
@@ -36,10 +37,13 @@ addons:
     - clang-format-5.0
     - pandoc
     - libffi-dev
+    - python3.7
+
 before_install:
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
+- pip install --user
 - pip install --user invoke
 - pip install --user pipenv
 - pipenv sync
