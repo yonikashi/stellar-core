@@ -18,8 +18,8 @@ addons:
   postgresql: '9.3'
   apt:
     sources:
-    - llvm-toolchain-trusty-3.5
-    - llvm-toolchain-trusty-5.0
+    #- llvm-toolchain-trusty-3.5
+    #- llvm-toolchain-trusty-5.0
     - ubuntu-toolchain-r-test
     packages:
     - autoconf
@@ -38,7 +38,7 @@ addons:
     - libffi-dev
 before_install:
 - mkdir $COMMIT && cd $COMMIT
-- git clone https://github.com/yonikashi/blocktest.git && cd blocktest
+- git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
 - pip install --user invoke
 - pip install --user pipenv
