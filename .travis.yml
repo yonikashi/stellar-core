@@ -1,5 +1,5 @@
 language: cpp
-os: linux
+#os: linux
 dist: xenial
 sudo: true
 compiler:
@@ -38,6 +38,9 @@ addons:
     - pandoc
     - libffi-dev
     - python3.7
+
+before_script:
+- sudo getpy.sh
 
 before_install:
 - mkdir $COMMIT && cd $COMMIT
