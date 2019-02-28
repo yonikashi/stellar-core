@@ -1,5 +1,7 @@
-language: cpp
-#os: linux
+language: python
+python:
+  - "3.7-dev"
+os: linux
 dist: xenial
 sudo: true
 compiler:
@@ -39,13 +41,13 @@ addons:
     - libffi-dev
 
 before_install:
-- bash getpy.sh
+#- bash getpy.sh
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
 #- pip install --user
-- pip install --user invoke
-- pip install --user pipenv
+- pip3 install --user invoke
+- pip3 install --user pipenv
 - pipenv sync
 - if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master"
   --version=$GIT_BRANCH ; fi

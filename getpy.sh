@@ -6,4 +6,5 @@ cd Python-3.7.2
 make -j 2
 sudo make altinstall
 python3.7 --version
+pipenv --python path/to/python
 which python
