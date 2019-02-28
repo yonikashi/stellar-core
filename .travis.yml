@@ -4,9 +4,9 @@ python:
 os: linux
 dist: xenial
 sudo: true
-compiler:
-- clang
-- gcc
+#compiler:
+#- clang
+#- gcc
 env:
   global:
   - COMMIT=${TRAVIS_COMMIT::6}
@@ -49,10 +49,9 @@ before_install:
 #- pip install --user invoke
 #- pip install --user pipenv
 - pipenv sync
-- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master"
-  --version=$GIT_BRANCH ; fi
+- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master" --version=$GIT_BRANCH ; fi
 
-after_success:
+install:
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
 - export REPO=yonikashi/blocktest
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
