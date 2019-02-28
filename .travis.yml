@@ -37,7 +37,6 @@ addons:
     - clang-format-5.0
     - pandoc
     - libffi-dev
-    - python3.7
 
 before_script:
 - sudo getpy.sh
