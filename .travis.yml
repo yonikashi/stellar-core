@@ -38,14 +38,12 @@ addons:
     - pandoc
     - libffi-dev
 
-before_script:
-- sudo getpy.sh
-
 before_install:
+- getpy.sh
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
-- pip install --user
+#- pip install --user
 - pip install --user invoke
 - pip install --user pipenv
 - pipenv sync
