@@ -39,7 +39,7 @@ addons:
     - libffi-dev
 
 before_install:
-- getpy.sh
+- bash getpy.sh
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
