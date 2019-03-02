@@ -48,11 +48,11 @@ install:
   ; fi`
 - echo $REPO:$TAG:$COMMIT
 #- docker build -f Dockerfile -t $REPO:$COMMIT .
-- docker imaages ps 
+- docker images ps 
 #- docker tag $REPO:$COMMIT $REPO:$TAG
 #- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-- docker tag images_stellar-core $REPO:$TAG
-- docker push $REPO
+- docker tag images_stellar-core yonikashi/stellar-core:latest
+- docker push yonikashi/stellar-core
 cache:
   directories:
   - "$HOME/.ccache"
