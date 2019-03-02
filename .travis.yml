@@ -48,10 +48,11 @@ install:
   ; fi`
 - echo $REPO:$TAG:$COMMIT
 #- docker build -f Dockerfile -t $REPO:$COMMIT .
-- docker images ps 
+- docker images ps -a
+- docker container ps -a
 #- docker tag $REPO:$COMMIT $REPO:$TAG
 #- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-- docker tag images_stellar-core yonikashi/stellar-core:latest
+- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core:latest
 - docker push yonikashi/stellar-core
 cache:
   directories:
