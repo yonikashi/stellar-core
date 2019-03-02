@@ -35,9 +35,6 @@ addons:
     - pandoc
     - libffi-dev
 script:
-- export REPO=yonikashi/stellar-core
-- export TAG=`if [ "$TRAVIS_BRANCH" == “kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
-  ; fi`
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
@@ -45,18 +42,21 @@ script:
 - if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master"
   --version=$GIT_BRANCH ; fi
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
+- export REPO=yonikashi/stellar-core
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
+  ; fi`
 - echo $REPO:$TAG:$COMMIT
+#- docker build -f Dockerfile -t $REPO:$COMMIT .
 - docker images ps -a
 - docker container ps -a
 #- docker tag $REPO:$COMMIT $REPO:$TAG
 #- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$COMMIT:$TAG
-- docker push yonikashi/stellar-core-$COMMIT
+- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core:latest
+- docker push yonikashi/stellar-core
 cache:
   directories:
   - "$HOME/.ccache"
   - ".libs"
- - “$HOME/$COMMIT/blockchain-ops/images/volumes/stellar-core-git”
 notifications:
   email: false
   slack:
