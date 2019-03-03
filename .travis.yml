@@ -35,21 +35,20 @@ addons:
     - pandoc
     - libffi-dev
 script:
-- export MY_TAG=${git describe --tags}
+- export MY_TAG=${echo git describe --tags}
 - git describe --tags
-- echo "mt-Tag" $MY_TAG
+- echo "my-Tag" $MY_TAG
 - echo "Travis-Tag" $TRAVIS_TAG
 - echo "Travis-Repo-Slug" $TRAVIS_REPO_SLUG
 - echo "Travis-event-type" $TRAVIS_EVENT_TYPE
 - echo "Travis-Branch" $TRAVIS_BRANCH
 - export REPO=yonikashi/stellar-core
-- export TAG=`if [ "$TRAVIS_BRANCH" == â€œkinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
-  ; fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == â"kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
 - pipenv sync
-- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master"
+- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="$TRAVIS_BRANCH"
   --version=$GIT_BRANCH ; fi
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
 - echo $REPO:$TAG:$COMMIT
