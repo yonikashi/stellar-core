@@ -35,6 +35,10 @@ addons:
     - pandoc
     - libffi-dev
 script:
+- echo "Travis-Tag" $TRAVIS_TAG
+- echo "Travis-Repo-Slug" $TRAVIS_REPO_SLUG
+- echo "Travis-event-type" $TRAVIS_EVENT_TYPE
+- echo "Travis-Branch" $TRAVIS_BRANCH
 - export REPO=yonikashi/stellar-core
 - export TAG=`if [ "$TRAVIS_BRANCH" == “kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
