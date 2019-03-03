@@ -43,7 +43,8 @@ script:
 - echo "Travis-event-type" $TRAVIS_EVENT_TYPE
 - echo "Travis-Branch" $TRAVIS_BRANCH
 - export REPO=yonikashi/stellar-core
-- export TAG=`if [ "$TRAVIS_BRANCH" == â"kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- echo $TAG
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
