@@ -35,7 +35,7 @@ addons:
     - pandoc
     - libffi-dev
 script:
-- export MY_TAG=${echo git describe --tags}
+- export MY_TAG=$(echo git describe --tags)
 - git describe --tags
 - echo "my-Tag" $MY_TAG
 - echo "Travis-Tag" $TRAVIS_TAG
