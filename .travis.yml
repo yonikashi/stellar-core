@@ -60,7 +60,7 @@ cache:
   directories:
   - "$HOME/.ccache"
   - ".libs"
- - “$HOME/$COMMIT/blockchain-ops/images/volumes/stellar-core-git”
+  - $HOME/$COMMIT/blockchain-ops/images/volumes/stellar-core-git
 notifications:
   email: false
   slack:
