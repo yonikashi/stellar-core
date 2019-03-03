@@ -8,7 +8,7 @@ env:
   global:
   - COMMIT=${TRAVIS_COMMIT::6}
   - BUILD_TYPE="stellar-core"
-  #- TAG="v.9.2.0"
+  - TAG="v.9.2.0"
   - GIT_BRANCH=latest
   - secure: IfDXOmOHnJgYNsvNk5oxsHW9JAxRSW/Gp9XJpcVTPND6lb79QwTtEa6rU3Z9aCIj1WEXLcHfBVu+xE6vmxh+MITMKhhVebkTDvg4YgTTHO7SzF83y2B+Ay3Dr2WfrqdcFmMv6sZz1BZMy7qnZpCLC8V/grDd0kzi6hsYRrLt8PBdwTOVAWESwkpbwxAl7hWV7lfhOAU/n1yyknTZ/Dc97g0hsm5tvTOPy1TWXM/7cek0jc929LUjwaghip9FkwV92cA7ZdDoE1FwixXQc4Krb1r2jMY0o5xNrV/EPYd62uQdsJxCOLgtZr2mz6wUIlLTD6QrpOUETeoUt+PDdfQHKToTAovaUMvXu77KMUHKdJhncEUHj1V2QGxFXwV0QAcDCYyfQtQs0kCtO5uWEWk20KuXvgVxS86jjH0cJNHQ1dTm7paqtQdlzeDhuhsQ/OBdSePxeZzcxjW56sr/dJxWlmAgIKMsMzxwMe7eG7RP2165HwI7j7hgefOCU9zPwZyin1VrYdT2AuIS75aIOGM/XbFcIWgGqWygPrejbFF82gQcGcjgJoEf3lft8+6GO/ezvKbNR9zDlDVnuNIxoN56ET4s9pRc4RKSgtYV1zfg20a1C2rsKXBdQfCNuql3pLAi1xpA9fhxpJqOZtKRBO22rGzFRQskRRFBpJ+KkAEvFos=
   - secure: PzZLq/+qfBgF4mPCAw9stIUBcX0kBbAXKKM/cx4ZZQSxuKAlChBISjcyxWJ+0fMJeQjScievDhmjVtffdq+VCSexwYVlO9IXssQ7jgl2SU/YQZVBXqkC6SnyUF4DPS+0LWQ08y8CSnUKUOLVBUIrfuD3/Ed+Am+6J6sLYnzQJR+giWr0F1QcB+f2doBof3vnzaUGo/yOiYa0ZKLvx7JjhqKkOmT6rLMarFturry9R1AoYBB4lPuM8AWKAA1tI1eKAgyD7CJ/fNOjcYLrqTJkcMBYRXGOhbrb8tI2SMI+laoa3Ja4JZuN2qXhnd1VaEcRm7j1UgzJFbGBGEBRa36aJ7BZ/j+VJEQm3rBKIULxtuFzIRO9aE0T2W865Pe5ASx9HI/gFA3sA4QO5ihDzlF6ewLWYGO6FN8V94uBj455ydK9bymu9xAyWaoxAJE+0Q8vZqedktLDvHN8x9PrkmU1gTB1Bm60k/Uj5SFlKg+5CY4htvgCWC8KYdzIsHUfuugne0J7voChNrlAurp5njspUQrgqTnLVsVoP2d5JgUE7cnHZh0UHhcJM7xHvkSnNdhljV4TH3LWtRh/1BmeUDsh/C8mucwKGRP0voKYDHxu6BFIv/CLM/reI4u4e1/Nqcn+caaBvcgJghB16DBioJ2i/PRDyeAYjQ9nChJEcfGxQoE=
@@ -34,33 +34,39 @@ addons:
     - clang-format-5.0
     - pandoc
     - libffi-dev
-
-before_script:
+script:
 - git describe --tags >> describe.txt
 - export MY_TAG="$(cat describe.txt)"
+- export COMMITTER_EMAIL="$(git describe --tags --pretty="%aE")"
+- echo $COMMITTER_EMAIL
+#- git describe --tags
+- echo "my-Tag" $MY_TAG
+- echo "Travis-Tag" $TRAVIS_TAG
+- echo "Travis-Repo-Slug" $TRAVIS_REPO_SLUG
+- echo "Travis-event-type" $TRAVIS_EVENT_TYPE
+- echo "Travis-Branch" $TRAVIS_BRANCH
 - export REPO=yonikashi/stellar-core
-
-script:
+- export TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- echo $TAG
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
 - pipenv sync
-- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="kinecosystem/master"
+- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="$TRAVIS_BRANCH"
   --version=$GIT_BRANCH ; fi
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
-  ; fi`
 - echo $REPO:$TAG:$COMMIT
-
-Install:
-- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$MY_TAG:latest
-- docker push yonikashi/stellar-core
-
+#- docker images ps -a
+- docker container ps -a
+#- docker tag $REPO:$COMMIT $REPO:$TAG
+#- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$COMMIT:$TAG
+- docker push yonikashi/stellar-core-$COMMIT
 cache:
   directories:
   - "$HOME/.ccache"
   - ".libs"
-
+  - $HOME/$COMMIT/blockchain-ops/images/volumes/stellar-core-git
 notifications:
   email: false
   slack:
