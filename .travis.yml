@@ -52,7 +52,7 @@ script:
   --version=$GIT_BRANCH ; fi
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
 - echo $REPO:$TAG:$COMMIT
-- docker images ps -a
+#- docker images ps -a
 - docker container ps -a
 #- docker tag $REPO:$COMMIT $REPO:$TAG
 #- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
