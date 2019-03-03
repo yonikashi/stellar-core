@@ -35,7 +35,10 @@ addons:
     - pandoc
     - libffi-dev
 script:
-- export MY_TAG="$(echo git describe --tags)"
+- git describe --tags >> describe.txt
+- export MY_TAG="$(cat describe.txt)"
+- export COMMITTER_EMAIL="$(git describe --tags --pretty="%aE")"
+- echo $COMMITTER_EMAIL
 #- git describe --tags
 - echo "my-Tag" $MY_TAG
 - echo "Travis-Tag" $TRAVIS_TAG
