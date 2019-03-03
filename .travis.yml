@@ -35,6 +35,9 @@ addons:
     - pandoc
     - libffi-dev
 script:
+- export MY_TAG=${git describe --tags}
+- git describe --tags
+- echo "mt-Tag" $MY_TAG
 - echo "Travis-Tag" $TRAVIS_TAG
 - echo "Travis-Repo-Slug" $TRAVIS_REPO_SLUG
 - echo "Travis-event-type" $TRAVIS_EVENT_TYPE
