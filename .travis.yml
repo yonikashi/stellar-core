@@ -53,7 +53,7 @@ script:
 - echo $REPO:$TAG:$COMMIT
 
 Install:
-- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$MY_TAG:latest
+- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$TRAVIS_BRANCH
 - docker push yonikashi/stellar-core
 
 cache:
