@@ -38,6 +38,7 @@ addons:
 before_script:
 - git describe --tags >> describe.txt
 - export MY_TAG="$(cat describe.txt)"
+- echo $MY_TAG
 - export REPO=yonikashi/stellar-core
 
 script:
@@ -46,7 +47,7 @@ script:
 - pip -V
 - pipenv sync
 - if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch="master"
-  --version=$GIT_BRANCH ; fi
+  --version=$MY_TAG ; fi
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
