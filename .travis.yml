@@ -8,10 +8,9 @@ env:
   global:
   - COMMIT=${TRAVIS_COMMIT::6}
   - BUILD_TYPE="stellar-core"
-  #- TAG="v.9.2.0"
   - GIT_BRANCH="kinecosystem-v2.0.1-stellar-v9.2.0"
-  - secure: IfDXOmOHnJgYNsvNk5oxsHW9JAxRSW/Gp9XJpcVTPND6lb79QwTtEa6rU3Z9aCIj1WEXLcHfBVu+xE6vmxh+MITMKhhVebkTDvg4YgTTHO7SzF83y2B+Ay3Dr2WfrqdcFmMv6sZz1BZMy7qnZpCLC8V/grDd0kzi6hsYRrLt8PBdwTOVAWESwkpbwxAl7hWV7lfhOAU/n1yyknTZ/Dc97g0hsm5tvTOPy1TWXM/7cek0jc929LUjwaghip9FkwV92cA7ZdDoE1FwixXQc4Krb1r2jMY0o5xNrV/EPYd62uQdsJxCOLgtZr2mz6wUIlLTD6QrpOUETeoUt+PDdfQHKToTAovaUMvXu77KMUHKdJhncEUHj1V2QGxFXwV0QAcDCYyfQtQs0kCtO5uWEWk20KuXvgVxS86jjH0cJNHQ1dTm7paqtQdlzeDhuhsQ/OBdSePxeZzcxjW56sr/dJxWlmAgIKMsMzxwMe7eG7RP2165HwI7j7hgefOCU9zPwZyin1VrYdT2AuIS75aIOGM/XbFcIWgGqWygPrejbFF82gQcGcjgJoEf3lft8+6GO/ezvKbNR9zDlDVnuNIxoN56ET4s9pRc4RKSgtYV1zfg20a1C2rsKXBdQfCNuql3pLAi1xpA9fhxpJqOZtKRBO22rGzFRQskRRFBpJ+KkAEvFos=
-  - secure: PzZLq/+qfBgF4mPCAw9stIUBcX0kBbAXKKM/cx4ZZQSxuKAlChBISjcyxWJ+0fMJeQjScievDhmjVtffdq+VCSexwYVlO9IXssQ7jgl2SU/YQZVBXqkC6SnyUF4DPS+0LWQ08y8CSnUKUOLVBUIrfuD3/Ed+Am+6J6sLYnzQJR+giWr0F1QcB+f2doBof3vnzaUGo/yOiYa0ZKLvx7JjhqKkOmT6rLMarFturry9R1AoYBB4lPuM8AWKAA1tI1eKAgyD7CJ/fNOjcYLrqTJkcMBYRXGOhbrb8tI2SMI+laoa3Ja4JZuN2qXhnd1VaEcRm7j1UgzJFbGBGEBRa36aJ7BZ/j+VJEQm3rBKIULxtuFzIRO9aE0T2W865Pe5ASx9HI/gFA3sA4QO5ihDzlF6ewLWYGO6FN8V94uBj455ydK9bymu9xAyWaoxAJE+0Q8vZqedktLDvHN8x9PrkmU1gTB1Bm60k/Uj5SFlKg+5CY4htvgCWC8KYdzIsHUfuugne0J7voChNrlAurp5njspUQrgqTnLVsVoP2d5JgUE7cnHZh0UHhcJM7xHvkSnNdhljV4TH3LWtRh/1BmeUDsh/C8mucwKGRP0voKYDHxu6BFIv/CLM/reI4u4e1/Nqcn+caaBvcgJghB16DBioJ2i/PRDyeAYjQ9nChJEcfGxQoE=
+  - secure: kMXSVtCwqRO4QvjE2kmd6PzwmO2PIwOsaWPqMpxQ6tcEsQbBuxI9VPuIpLPfwNKSODFi/7hXM3kGRYFmUp5JbvzlpFfzRXnlVa8Y1TovFQNyBY2fDPtfzwUKn3oTYaI0QbU8ODwAsQPB23Bmq+KkVl+Un6P/JTpoa8yXNktwoOkqrEqptnFZNo4ilHJgm/vSqFwEmMcvZzmmvChl59dO8ddZmk7c3o+oFOwgFPJ6I6GQiEYSutAoHW8LY9puWTT1qjASAHsTvw44fYRYum8omah5SwPcf7XVMaXaTuhqe+0VN9CEEUpwT4knkoHXtzJiNR/DD2VRLjnhZFvrzFeqzI01XR8Usj6EzBIOK6aLFGNzdwtTZDFIWLBBGyoQO/1XVoWGCQpnGSjfUwr4fsjbKDck/SCp9BkwvLor1wAQUbI8udyfmx8s8JfLjRQtFEjNFEARYVEpaQQJiA15sFRh2EDuhcAuOGX+KAUTMJkoqmaa1NfwJc6uUldohmyIK+vw4QFLufVqa4nY0++7bEBhJl+/d+E2Sy27zZyBhAmOKUqNkX5VGX3u2uEZF70s+uQqztGDSoa2QJUxG5k6KUTCUmfWAkyu71j4xe/q+hAavl8caa3zfmKkZQaMbPxuJcnkXXNIZ30eBA6yZ7ML/N6rLnInFxRtZ3ZuhutpSoYwCrU=
+  - secure: BCcZka3XkQx6WTawcJSXP0ksRt0Pjjut4fu/WVX8mEVDBZQhTMYBYWrfC7EAT9cW3niEZuIUsi40bKggStZZuY5NjlCwD4h/5JXIUJeA/PB+cOtgifTziWW/mdP2AkRtf+Hz5SMecYvBAlgF+1EpV3j/DVZVoxumkHhbuU5kIhJh52DaXggOisQft+zC4V64q+Cp8Ih5V1tCzbAIw1Z0aNmwOHsQVqJz5PeveTPbZBk4CEWcgeb0QskEeNtbqkdrIlR9uZ300zHlW+CNrncgkYNfDxRq9+iVTOWd08b2NoYGiTVY7r6NggGRNgsm4dqjTF6mzToJ76B233ht2CoGWmzOdAnR9IYEhVKICZ+K+h0HN+Xj5qL7ZkVXfa9JsHd92WByn5laWm132BfkMYpgsiVFe/V0/whPfzISsdPoZ39YfyLa8isL2cy0rD248XS5unzSQpNBfu3BKOKbeIZsyGRzUxdx/LvLe1HJgOx0bGvAjRpwqxyfFyJl3lJdGHIC8viOo+L7vj1rgWlm9zdU28+BwqV+4K7y53jyRuqeHYPLKREguO1uJlX8E6iVxofJdcoTKv/BwLavR3vqH/P4gfuVs9Yp+LIkkfG7GbdvExlTF0NNYHR4hy/R374PNiza0Z9j0dUN+cwOhPOmQve9Ri2lXiF+myEnw1RZBQ6a0nk=
 services:
 - docker
 addons:
@@ -34,13 +33,11 @@ addons:
     - clang-format-5.0
     - pandoc
     - libffi-dev
-
 before_script:
 - git describe --tags >> describe.txt
 - export MY_TAG="$(cat describe.txt)"
 - echo $MY_TAG
 - export REPO=yonikashi/stellar-core
-
 script:
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/yonikashi/blockchain-ops.git && cd blockchain-ops
@@ -52,19 +49,15 @@ script:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
 - echo $REPO:$TAG:$COMMIT
-
 Install:
-- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$TRAVIS_BRANCH
-- docker push yonikashi/stellar-core
-
+- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
+- docker push yonikashi/stellar-core-$GIT_BRANCH:$MT_TAG
 cache:
   directories:
   - "$HOME/.ccache"
   - ".libs"
-
 notifications:
   email: false
   slack:
     secure: VYA87p8f6PgmOhL8b8DM4t6k8vPYjULpT7LBhvmNBNe8iiNDtTzLpRbUXg6t6Ij7Y3MU4uOJ5K617hCqs81VfRoOakbiYTWHeYSsMmIrUM4+d5MZM4pVP0/bCE49qt06bZINorh6IHChhfuvod3uyUqbgNrwRf/qDIIboFDIty8=
-# Only build tags
-if: tag IS present
+#if: tag IS present
