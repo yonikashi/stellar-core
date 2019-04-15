@@ -43,11 +43,11 @@ script:
 - git clone https://github.com/yonikashi/blockchain-ops.git && cd blockchain-ops
 - pip -V
 - pipenv sync
-- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$TRAVIS_BRANCH
-  --version=$MY_TAG ; fi
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
+- export BUILD_BRANCH=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
+- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$BUILD_BRANCH
+  --version=$MY_TAG ; fi
 - echo $REPO:$TAG:$COMMIT
 - docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
 - docker push yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
