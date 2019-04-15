@@ -50,7 +50,7 @@ script:
   ; fi`
 - echo $REPO:$TAG:$COMMIT
 - docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
-- docker push yonikashi/stellar-core-$GIT_BRANCH:$MT_TAG
+- docker push yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
 cache:
   directories:
   - "$HOME/.ccache"
