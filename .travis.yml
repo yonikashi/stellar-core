@@ -2,7 +2,7 @@ language: python
 python:
 - 3.7-dev
 os: linux
-dist: xenial
+dist: bionic
 sudo: true
 env:
   global:
@@ -47,8 +47,9 @@ script:
 - export BUILD_BRANCH=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
 - echo $BUILD_BRANCH
-- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$BUILD_BRANCH
-  --version=$MY_TAG ; fi
+- pipenv run invoke build-core --branch=kinecosystem/master --version=$MY_TAG
+#- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$BUILD_BRANCH
+#  --version=$MY_TAG ; fi
 - echo $REPO:$TAG:$COMMIT
 - docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
 - docker push yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
