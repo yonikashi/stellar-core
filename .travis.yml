@@ -44,7 +44,7 @@ script:
 - pip -V
 - pipenv sync
 - docker login --username=$DOCKER_USER -p $DOCKER_PASS
-- export BUILD_BRANCH=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
+- export BUILD_BRANCH=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
 - echo $BUILD_BRANCH
 - if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$BUILD_BRANCH
