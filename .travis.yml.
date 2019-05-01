@@ -1,0 +1,57 @@
+language: python
+python:
+- 3.7-dev
+os: linux
+dist: bionic
+sudo: true
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::6}
+  - BUILD_TYPE="stellar-core"
+
+addons:
+  postgresql: "9.5"
+  apt:
+    sources:
+    - llvm-toolchain-trusty-3.5
+    - llvm-toolchain-trusty-5.0
+    - ubuntu-toolchain-r-test
+    packages:
+    - autoconf
+    - automake
+    - bison
+    - clang-3.5
+    - flex
+    - g++-4.9
+    - libpq-dev
+    - libpq5
+    - libstdc++6
+    - libtool
+    - pandoc
+    - libffi-dev
+
+before_script:
+- git describe --tags >> describe.txt
+- export MY_TAG="$(cat describe.txt)"
+- export GIT_TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "master"; else echo $TRAVIS_BRANCH
+  ; fi`
+
+script:
+- mkdir $COMMIT && cd $COMMIT
+- git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
+- pip -V
+- pipenv sync
+- pipenv run invoke build-core --branch=$BUILD_BRANCH --version=$GIT_TAG
+
+cache:
+  directories:
+  - $HOME/.ccache
+  - .libs
+
+notifications:
+  email: false
+  slack:
+    secure: VYA87p8f6PgmOhL8b8DM4t6k8vPYjULpT7LBhvmNBNe8iiNDtTzLpRbUXg6t6Ij7Y3MU4uOJ5K617hCqs81VfRoOakbiYTWHeYSsMmIrUM4+d5MZM4pVP0/bCE49qt06bZINorh6IHChhfuvod3uyUqbgNrwRf/qDIIboFDIty8=
+
+# Only build tags
+if: tag IS present
