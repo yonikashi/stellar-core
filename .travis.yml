@@ -48,7 +48,7 @@ script:
 - export BUILD_BRANCH=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
 - echo $BUILD_BRANCH
-- pipenv run invoke build-core --branch=kinecosystem/core --version=$GIT_BRANCH
+- pipenv run invoke build-core --branch="kinecosystem/core" --version=$GIT_BRANCH
 #- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$BUILD_BRANCH
 #  --version=$MY_TAG ; fi
 - echo $REPO:$TAG:$COMMIT
