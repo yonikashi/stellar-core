@@ -33,9 +33,10 @@ addons:
 before_script:
 - git describe --tags >> describe.txt
 - export MY_TAG="$(cat describe.txt)"
+- echo $GIT_TAG
 - export GIT_TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "master"; else echo $TRAVIS_BRANCH
   ; fi`
-
+- echo $GIT_TAG
 script:
 - mkdir $COMMIT && cd $COMMIT
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
