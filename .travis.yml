@@ -49,7 +49,8 @@ script:
   ; fi`
 - echo $BUILD_BRANCH
 - echo $TRAVIS_BRANCH
-- pipenv run invoke build-core --branch=$BUILD_BRANCH --version=$GIT_BRANCH
+- echo $GIT_BRANCH
+- pipenv run invoke build-core --branch=$BUILD_BRANCH --version=latest
 #- if [[ "$BUILD_TYPE" == "stellar-core" ]]; then pipenv run invoke build-core --branch=$BUILD_BRANCH
 #  --version=$MY_TAG ; fi
 - echo $REPO:$TAG:$COMMIT
