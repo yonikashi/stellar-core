@@ -34,6 +34,7 @@ before_script:
 - git describe --tags >> describe.txt
 - export MY_TAG="$(cat describe.txt)"
 - echo $GIT_TAG
+- echo $TRAVIS_BRANCH
 - export GIT_TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "master"; else echo $TRAVIS_BRANCH
   ; fi`
 - echo $GIT_TAG
