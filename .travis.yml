@@ -8,9 +8,10 @@ env:
   global:
   - COMMIT=${TRAVIS_COMMIT::6}
   - BUILD_TYPE="stellar-core"
-
+  - secure: IBBhlMUjnkfbY0Hm9DFmnwL/F/sDW/5JdFC1akJxp0f9Qazw4Ux82iJBBisABz0jaQtoQ6/zKXCTcsCz/l6mkJpqL+Qzbx0wWGRIl62zLXXW8KIUr0y2cLEbEm5xizDDNLxFx7yApWCqSOLFsaGCa2uPOa7osotc+1x5Vq2VqBYfhrb3aMlX86wvFtiFHbROlvB7limeBeTj5gxhhhjCqRUXYiEQAALUhqDELf9pMt7rKTrUWA9pTNMcbkLeYr+ookjBqSPVc9aDpOAiD4k0KwiJa5AAba3E+q4WqNpTGjTglDZ4ud3Hqx4Hq+ZKU2CC96EMBJrKIiIzeaTtVY1+4u4CS4IdVGmLOXriUQICaQa8/IoDxMGD7mQTlGloPkzG47iwIlwLdA7xFmqXJ0WT78zVdloQBPmcj2lm6eKnVRoqOltg8wftTOKUo4tOv1jaVBJ/wXiCYC9+4kJr8dsO/ZUpLxDJaxWEFYzO8DICpUaaHJXoO1WqHRUHRZyuvfhz7lX2OHZeoDIMUtvl5LMghBfxKpPeo40aC672k6ka4bpjdysAO4TDbyvH6CvdIETm0JsK9sr1rEJRhMNfm49Hd3XCVPpeyoanoLRCHAG2wTU7/0WGEueR2aq/9+3OXk0jNxP6cWaj/QYQKgAXGi6FbbCAZkAZfd/Tm5p1n7kiObs=
+  - secure: raK9aX6B6ExWKHb93+tf2kF0QqALsRSw6knoWLhXYSe9LHbWWmFk/sBQaUIQQlKMrIVk2ZnLXgMQBz1ocPuriODZzG/+Wtw2Yxc9Iz1TE40oRqmvV1u8EgmVw94FPAh9vRdmAFKL+5/dqXTebscoHOzvgQdBz72KHXt5G4Uz+ogzIqeETFWo6OfXYcZe2snLaZp6fk2L1N8Eias357+oTBVJEGqajGl0SiLm2amUqKEhKv9ndbeHEEQh+K/aw6EBTG/zngoDqtzG0j6QLYTBTdvUSo9yQ5ETthd28+HCWpXSNGR24G7wLGOQra/3ATrKms/hd0gBkFcyR4GQb7JxwXbnylSAn8JXQz2KyNyTUgBS691GK4LeWTaC0j4nh4Lh7qsXleTe5JmOAP2v2FbMQLoM1J0kuxt3zZ71pU55x49jzdKgzDidurNkDReZXcBNJvGb6oamtRUlTnf0nLLuRqxDYM8gF1N35KfEPZfXRYQFkynyVcHNR3MSxn+bPI+87S697gAXgLku5gm1Stq3QX/jip4NmDlI0z+Lc/JvTggUy6+CY2RQU/1KA/H53wFdZHPZiEAK0fTs/gEw63TtUWXIhjGVEpGCGSht+U3NmxC/907fn0mN8ZbfmgRkYCZTavrIazdvxkHx4m8g/OCHKI2wQ1TnkQA/38gDizapVtE=
 addons:
-  postgresql: "9.5"
+  postgresql: '9.5'
   apt:
     sources:
     - llvm-toolchain-trusty-3.5
@@ -29,14 +30,13 @@ addons:
     - libtool
     - pandoc
     - libffi-dev
-
 before_script:
 - git describe --tags >> describe.txt
 - export MY_TAG="$(cat describe.txt)"
 - echo $GIT_TAG
 - echo $TRAVIS_BRANCH
-- export GIT_TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "$TRAVIS_BRANCH"; else echo "master"
-  ; fi`
+- export GIT_TAG=`if [ "$TRAVIS_BRANCH" == "kinecosystem/master" ]; then echo "$TRAVIS_BRANCH";
+  else echo "master" ; fi`
 - echo $GIT_TAG
 script:
 - mkdir $COMMIT && cd $COMMIT
@@ -44,16 +44,17 @@ script:
 - pip -V
 - pipenv sync
 - pipenv run invoke build-core --branch=$GIT_TAG --version=$MY_TAG
-
-#cache:
-#  directories:
-#  - $HOME/.ccache
-#  - .libs
-
+- docker login --username=$DOCKER_USER -p $DOCKER_PASS
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
+  ; fi`
+- echo $REPO:$TAG:$COMMIT
+- docker tag kinecosystem/stellar-core:latest yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
+- docker push yonikashi/stellar-core-$GIT_BRANCH:$MY_TAG
+cache:
+  directories:
+  - "$HOME/.ccache"
+  - ".libs"
 notifications:
   email: false
   slack:
     secure: VYA87p8f6PgmOhL8b8DM4t6k8vPYjULpT7LBhvmNBNe8iiNDtTzLpRbUXg6t6Ij7Y3MU4uOJ5K617hCqs81VfRoOakbiYTWHeYSsMmIrUM4+d5MZM4pVP0/bCE49qt06bZINorh6IHChhfuvod3uyUqbgNrwRf/qDIIboFDIty8=
-
-# Only build tags
-#if: tag IS present
