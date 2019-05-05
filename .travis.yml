@@ -43,7 +43,7 @@ script:
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
 - pipenv sync
-- pipenv run invoke build-core --branch="master" --version=$MY_TAG
+- pipenv run invoke build-core --branch=$GIT_TAG --version=$MY_TAG
 
 #cache:
 #  directories:
