@@ -42,7 +42,7 @@ script:
 - git clone https://github.com/kinecosystem/blockchain-ops.git && cd blockchain-ops
 - pip -V
 - pipenv sync
-- pipenv run invoke build-core --branch=$GIT_TAG --version=$TRAVIS_BRANCH
+- pipenv run invoke build-core --branch=$GIT_TAG --version=$MY_TAG
 
 cache:
   directories:
@@ -55,4 +55,4 @@ notifications:
     secure: VYA87p8f6PgmOhL8b8DM4t6k8vPYjULpT7LBhvmNBNe8iiNDtTzLpRbUXg6t6Ij7Y3MU4uOJ5K617hCqs81VfRoOakbiYTWHeYSsMmIrUM4+d5MZM4pVP0/bCE49qt06bZINorh6IHChhfuvod3uyUqbgNrwRf/qDIIboFDIty8=
 
 # Only build tags
-#if: tag IS present
+if: tag IS present
